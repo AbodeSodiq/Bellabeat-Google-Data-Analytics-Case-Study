@@ -50,9 +50,11 @@ A pioneer in the fem-tech realm, Bellabeat is a women’s wellness company that 
 
 Focusing on creating innovative health and wellness products for women, our mission is to empower women to take control of their health by providing them with technology-driven solutions that blend design and function. Bellabeat stands as a beacon in the tech-driven wellness landscape, particularly for women. Originating from Sršen's artistic background, Bellabeat crafts beautifully designed technology that provides insights into various aspects of women's health. Founded in 2014 by Urška Sršen and Sando Mur.
 
+![Woman doing exercise with Bellabeat device (Bellabeat.2023)](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Images/Woman_doing_exercise.jpg)
+
 ### 2.2 FOUNDERS
 ##### 2.2.1 Urška Sršen(Co-founder & CPO) 
-Urska's educational background includes studying fine arts sculpture at ALUO Ljubljana and Kuvataideakatemia in Helsinki. She brings her attention to detail and passion for design to her role at Bellabeat, where she is instrumental in the development and execution of their innovative products in the digital health market.
+Urska's educational background includes studying fine arts sculpture at ALUO Ljubljana and Kuvataideakatemia in Helsinki. She brings her attention to detail and passion for design to her role at Bellabeat, where she is instrumental in the development and execution of innovative products in the digital health market.
 
 ##### 2.2.2 Sando Mur (Co-founder & CEO)
 Sandro Mur is a seasoned entrepreneur with a background in engineering. He draws inspiration from his mother and grandmother, both of whom were forward-thinking businesswomen. At Bellabeat, Sandro oversees strategy, finance, and growth. With a keen interest in startups, he established Bellabeat's investment program to support promising local talent and technology.
@@ -67,6 +69,10 @@ From advanced fitness metrics to GPS-enabled workout monitoring, these smart dev
 Ivy is the only tracker designed and engineered for women, which correlates menstrual cycle data, lifestyle habits, and biometric readings. It Identifies self-care gaps and suggests improvements, calculates Wellness and Readiness Scores, monitors heart rate, cardiac coherence, respiratory rate, activity, and sleep. It reveals a comprehensive and accurate state of body and mind.
 ##### Leaf Urban & Leaf Chakra
 It tracks activity, sleep, stress, meditation, and reproductive health
+
+![Ivy health tracker](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Images/Ivy.jpg) 
+![Leaf Chaktra](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Images/Leaf%20Chaktra.jpg) 
+![Leaf Urban](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Images/Leaf%20Urban.jpg)
 
 ### 2.4 PURPOSE OF ANALYSIS 
 The purpose of this analysis is to gain comprehensive insights into the usage patterns of non-Bellabeat smart devices, providing a foundation for strategic decision-making. By understanding broader market trends in smart device usage, Bellabeat can refine its products and marketing strategies to better cater to the evolving needs and preferences of its customer base.
