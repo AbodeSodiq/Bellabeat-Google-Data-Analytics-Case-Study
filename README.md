@@ -170,6 +170,8 @@ The analysis of total distance, representing the kilometers covered in a day, an
 
 The data shows a consistent trend across all users, indicating that individuals carry their trackers with them consistently throughout the day. This observation highlights the portability and durability of fitness trackers, as well as their integration into users' daily routines. The frequent utilization of trackers during day-to-day activities suggests their practicality and reliability in supporting individuals' fitness and wellness goals.
 
+![Average_distance_vs_Average_tracker](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Charts/Average_distance%20vs.%20Average_tracker.png)
+
 ##### 5.2 BMI (Body Mass Index)
 The analysis conducted on the body mass index (BMI) data provides valuable insights into the characteristics of individuals who predominantly use fitness trackers, thereby aiding in the identification of Bellabeat's target audience. By calculating the maximum, minimum, average, and standard deviation of BMI values, we gain a comprehensive understanding of the BMI distribution among users. The BMI measurements were collected over various days within a month, revealing consistent readings with no significant fluctuations. 
 
@@ -178,12 +180,22 @@ This consistency underscores the reliability of the BMI data in accurately repre
 
 Below 18.5 – you're in the underweight range. between 18.5 and 24.9 – you're in the healthy weight range. between 25 and 29.9 – you're in the overweight range. 30 or over – you're in the obese range.
 
+![Average_BMI](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Charts/Average_bmi%20vs.%20User_id.png)
+
 ##### 5.3 FITNESS TRACKER 
 Upon analyzing 187 fitness trackers from different manufacturers, it became evident that certain patterns emerged in their specifications. Specifically, it was found that every fitness tracker, except for those from BellaBeat, includes accelerometers. Additionally, a significant portion of these devices also incorporate PPG sensors, while a smaller percentage feature GPS and gyroscopes. This insightful observation provides us with valuable information to tailor our product to meet customer preferences and surpass competitors in the market.
+
+![Sensors percentage in non-Bellabeat product](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Charts/Sensors_percentage_chart.png)
+
 ##### 5.4 Daily step and calories burn
 In my analysis utilizing scatter plot charts to examine the correlation between daily step count and calorie expenditure per user, a notable trend emerged. An increase in daily steps was consistently associated with a corresponding rise in calories burned. This finding highlight the potential health benefits of regular physical activity, suggesting that higher step counts may contribute to weight management and overall well-being.
+
+![Average steps vs Average calories](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Charts/Average%20_Steps%20vs.%20Average_Calories%20%20.png)
+
 ##### 5.5 Age Range
 Analysis of the percentage of internet users that own wristband trackers are categorized according to their age. It was observed that from 25 to 54 years of age, the percentage of females is high when compared to males. This helps to determine the target audience for Bellabeat products which are meant for females. 
+
+![Percentage of age range](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Charts/Male%20vs%20Female.png)
 
 ### 6.0 RECOMMENDATION
 - **Product Development:** Incorporate features that align with common patterns observed in fitness tracker specifications, such as accelerometers and PPG sensors, while also considering the integration of GPS and gyroscopes to enhance the functionality and appeal of Bellabeat products such as Ivy.
