@@ -15,6 +15,8 @@ SELECT
   Calories
 FROM `case-study-capsone.smart_device_usage.daily_activities`
 `````
+![Daily activity info table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Daily_activity_info.png)
+
 > The three columns in the uploaded **heartrate_seconds_merged** from FItbase data appeared merged in one column named **string_field_0** which was then splitted. Average daily heartrate table was created.
 ##### Separate merged heartrate column
 ````
@@ -90,9 +92,12 @@ GROUP BY
   t1.date
 ORDER BY 
   t1.Id
-  > Temporary General Table was created by joining tables together
-````
-> Temporary merged table created 
+ ````
+![Daily_avg_heartrate](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Daily_avg_heartrate.png)
+
+> A Temporary General Table was created by joining tables together
+
+A temporary merged table created 
 ````
 CREATE TABLE `case-study-capsone.smart_device_usage.daily_activity_temp` AS 
 SELECT
@@ -126,6 +131,8 @@ ON
 ORDER BY
 Table1.id
 ````
+![Daily activity temporary table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Daily_activity_temp.png)
+
 > Another column with a Unique User_id for each User ID number for easy identification was created. The User_id is from User_1 to User_33
 ##### Assign User_id to each id_number
 ````
@@ -163,6 +170,8 @@ SELECT
 FROM
   NumberedUsers;
 ````
+![User id 1-33 for each user id number table]()
+
 > Final **General table** created
 ````
 CREATE TABLE `case-study-capsone.smart_device_usage.smart_usage_daily_data`
@@ -201,7 +210,9 @@ SELECT
 FROM
   NumberedUsers;
 ````
-> Calories_burn column lenght confirmation
+![Smart usage daily data table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Smart_usage_daily_data.png)
+
+> Calories_burn column length confirmation
 ###### 1
 ````
 SELECT 
@@ -258,6 +269,8 @@ ORDER BY
   CAST(SUBSTRING(User_id, 6) AS INT64)
 > Fitness tracker data was filtered. Minimum and maximum year was confirmed to understand the data better and it's impact on my recommendation
 ````
+[Average steps & average calories table](
+
 > fitness_tracker
 ````
 CREATE TABLE `case-study-capsone.smart_device_usage.fitness_tracker`
@@ -278,6 +291,8 @@ WHERE
   Form_factor = 'tracker'
 ORDER BY Release_year
 ````
+![Fitness tracker table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Fitness_tracker.png)
+
 > Minimum and maximum year
 ````
 SELECT
