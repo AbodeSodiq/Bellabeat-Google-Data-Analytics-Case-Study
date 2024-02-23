@@ -12,32 +12,32 @@
 _In this case study I  analyzed smart device usage data to gain insight into how consumers use non-Bellabeat smart devices, determine trends, and give high-level recommendations for how these trends can inform Bellabeat's marketing strategy based on those findings._
 
 ### Table of Content
-### 1.0 Summary 
-### 2.0 Introduction
-### 2.1 About the company 
-### 2.2 Founders
-### 2.3 Smart Device
-### 2.3.1 Bellabeat Smart Device
-### 2.4 Purpose of analysis
-### 2.5 Significance of analysis 
-### 3.0 Business task 
-### 3.1 Key task
-### 3.2 Stakeholder
-### 4.0 Data source
-### 4.1 Integration step taken 
-### 4.2 Data cleaning tools
-### 4.3 Data cleaning and manipulation
-### 4.4 Conclusion 
-### 5.0 Analysis summary and key findings
-### 5.1 Tracker distance 
-### 5.2 BMI (Body mass index) 
-### 5.2.1 BMI Calculation 
-### 5.3 Fitness tracker
-### 5.3.1 Percentage of sensors in 187 trackers
-### 5.4 Daily steps and calories 
-### 5.5 Age range
-### 6.0 Recommendation 
-### Reference
+#### 1.0 Summary 
+#### 2.0 Introduction
+#### 2.1 About the company 
+#### 2.2 Founders
+#### 2.3 Smart Device
+#### 2.3.1 Bellabeat Smart Device
+#### 2.4 Purpose of analysis
+#### 2.5 Significance of analysis 
+#### 3.0 Business task 
+#### 3.1 Key task
+#### 3.2 Stakeholder
+#### 4.0 Data source
+#### 4.1 Integration step taken 
+#### 4.2 Data cleaning tools
+#### 4.3 Data cleaning and manipulation
+#### 4.4 Conclusion 
+#### 5.0 Analysis summary and key findings
+#### 5.1 Tracker distance 
+#### 5.2 BMI (Body mass index) 
+#### 5.2.1 BMI Calculation 
+#### 5.3 Fitness tracker
+#### 5.3.1 Percentage of sensors in 187 trackers
+#### 5.4 Daily steps and calories 
+#### 5.5 Age range
+#### 6.0 Recommendation 
+#### Reference
 
 
 ### 1.0 SUMMARY 
@@ -177,13 +177,14 @@ The analysis conducted on the body mass index (BMI) data provides valuable insig
 
 This consistency underscores the reliability of the BMI data in accurately representing individuals' body compositions over time, making it a robust metric for analysis. Upon evaluating the standard BMI readings (below the table), a notable observation emerges. A proportion of individuals who utilize fitness trackers fall within the overweight and obese categories. This finding sheds light on the prevalent health trends among fitness tracker users, indicating a potential target audience for Bellabeat's wellness products and services.
 
-
-Below 18.5 – you're in the underweight range. between 18.5 and 24.9 – you're in the healthy weight range. between 25 and 29.9 – you're in the overweight range. 30 or over – you're in the obese range.
+![BMI Calculation table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/BMI_Calculation.png)
 
 ![Average_BMI](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Charts/Average_bmi%20vs.%20User_id.png)
 
 ##### 5.3 FITNESS TRACKER 
 Upon analyzing 187 fitness trackers from different manufacturers, it became evident that certain patterns emerged in their specifications. Specifically, it was found that every fitness tracker, except for those from BellaBeat, includes accelerometers. Additionally, a significant portion of these devices also incorporate PPG sensors, while a smaller percentage feature GPS and gyroscopes. This insightful observation provides us with valuable information to tailor our product to meet customer preferences and surpass competitors in the market.
+
+![Percentage of sensors in non-Bellabeat tracker](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Sensors_percentage.png)
 
 ![Sensors percentage in non-Bellabeat product](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Charts/Sensors_percentage_chart.png)
 
