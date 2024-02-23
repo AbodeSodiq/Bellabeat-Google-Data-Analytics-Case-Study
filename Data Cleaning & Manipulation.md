@@ -1,10 +1,10 @@
 ## SQL Analysis with BigQuery
 ### Introduction
-> In this case study I  analyze smart device usage data to gain insight into how consumers use non-Bellabeat smart devices, determine trends, and give high-level recommendations for how these trends can inform Bellabeat's marketing strategy based on those finding using SQL queries in BigQuery. All the code snippets provided below are written in SQL.
+> In this case study I  analyze smart device usage data to gain insight into how consumers use non-Bellabeat smart devices, determine trends, and give high-level recommendations for how these trends can inform Bellabeat's marketing strategy based on those findings using SQL queries in BigQuery. All the code snippets provided below are written in SQL.
 ### Data cleaning and manipulation
-> New **daily_activities_info** table created
+> New **daily activities info** table created from **dailyActivity_merged** table from [Fitbit Database](https://doi.org/10.5281/zenodo.53894)
 `````
-CREATE TABLE `case-study-capsone.smart_device_usage.daily_activities_info` 
+CREATE TABLE `case-study-capstone.smart_device_usage.daily_activities_info` 
 AS
 SELECT
   id,
@@ -13,24 +13,27 @@ SELECT
   TotalDistance,
   TrackerDistance,
   Calories
-FROM `case-study-capsone.smart_device_usage.daily_activities`
+FROM `case-study-capstone.smart_device_usage.daily_activities`
 `````
 ![Daily activity info table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Daily_activity_info.png)
 
-> The three columns in the uploaded **heartrate_seconds_merged** from FItbase data appeared merged in one column named **string_field_0** which was then splitted. Average daily heartrate table was created.
+> The three columns in the uploaded **heartrate_seconds_merged** from FItbase data appeared merged in one column named **string_field_0** which was then split. An average daily heartrate table was created.
+
+![heartrate_seconds_merged table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/heartrate_seconds_merged.png)
+
 ##### Separate merged heartrate column
 ````
-CREATE TABLE `case-study-capsone.smart_device_usage.heartrate_second` AS 
+CREATE TABLE `case-study-capstone.smart_device_usage.heartrate_second` AS 
 SELECT
     SPLIT(string_field_0, ',')[OFFSET(0)] AS Id,
     SPLIT(string_field_0, ',')[OFFSET(1)] AS dateandtime,
     SPLIT(string_field_0, ',')[OFFSET(2)] AS value
 FROM
-  `case-study-capsone.smart_device_usage.heartrate_seconds`
+  `case-study-capstone.smart_device_usage.heartrate_seconds`
     
 ## Create daily_heatrate table
-### split date and time column
-CREATE TABLE `case-study-capsone.smart_device_usage.daily_heartrate` 
+### Split date and time column
+CREATE TABLE `case-study-capstone.smart_device_usage.daily_heartrate` 
 AS
 SELECT
     Id,
@@ -42,7 +45,7 @@ FROM
       SPLIT(string_field_0, ",")[OFFSET(1)] AS dateandtime,
       SPLIT(string_field_0, ',')[OFFSET(2)] AS value
     FROM
-      `case-study-capsone.smart_device_usage.heartrate_seconds`)
+      `case-study-capstone.smart_device_usage.heartrate_seconds`)
 ````
 
 ##### Cast table
@@ -57,12 +60,12 @@ SELECT
       SPLIT(string_field_0, ",")[OFFSET(1)] AS dateandtime,
       SAFE_CAST(SPLIT(string_field_0, ',')[OFFSET(2)] AS INT64) AS value
     FROM
-    `case-study-capsone.smart_device_usage.heartrate_seconds`)
+    `case-study-capstone.smart_device_usage.heartrate_seconds`)
 `````
     
-> final createed table without first row 
+> Final table created without first row 
 `````
-CREATE TABLE `case-study-capsone.smart_device_usage.daily_heartrate_seconds`
+CREATE TABLE `case-study-capstone.smart_device_usage.daily_heartrate_seconds`
 AS
 SELECT
     Id,
@@ -74,19 +77,19 @@ FROM (
         SPLIT(string_field_0, ',')[OFFSET(1)] AS dateandtime,
         SAFE_CAST(SPLIT(string_field_0, ',')[OFFSET(2)] AS INT64) AS value
     FROM
-        `case-study-capsone.smart_device_usage.heartrate_seconds`
+        `case-study-capstone.smart_device_usage.heartrate_seconds`
     WHERE
         NOT STARTS_WITH(string_field_0, 'Id,Time,Value')
 )
 `````
 > Average heartrate with ROUND UP
 ````
-CREATE TABLE `case-study-capsone.smart_device_usage.daily_avg_heartrate` AS
+CREATE TABLE `case-study-capstone.smart_device_usage.daily_avg_heartrate` AS
 SELECT 
   t1.Id,
   t1.date AS Date, 
   CEIL(AVG(t1.heartrate_seconds)) AS Avg_heartrate
-FROM `case-study-capsone.smart_device_usage.daily_heartrate_seconds` AS t1
+FROM `case-study-capstone.smart_device_usage.daily_heartrate_seconds` AS t1
 GROUP BY 
   t1.Id,
   t1.date
@@ -95,9 +98,7 @@ ORDER BY
  ````
 ![Daily_avg_heartrate](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Daily_avg_heartrate.png)
 
-> A Temporary General Table was created by joining tables together
-
-A temporary merged table created 
+> A Temporary General Table was created by joining tables together after sleep data was organized by separating time and date and ordering by date for subsequent correlation, Data for weight log information was streamlined, emphasizing essential metrics like weight in kilograms and BMI. Unnecessary columns such as weight in pounds, fat percentage, and manual reporting indicators were removed.
 ````
 CREATE TABLE `case-study-capsone.smart_device_usage.daily_activity_temp` AS 
 SELECT
@@ -112,19 +113,19 @@ SELECT
   Table1.Calories AS Calories_burn,
   Table2.BMI,
   Table3.Avg_heartrate
-FROM `case-study-capsone.smart_device_usage.daily_activities_info` AS Table1
+FROM `case-study-capstone.smart_device_usage.daily_activities_info` AS Table1
 LEFT JOIN 
-  `case-study-capsone.smart_device_usage.weight_info` AS Table2 
+  `case-study-capstone.smart_device_usage.weight_info` AS Table2 
 ON
   Table1.id = Table2.Id AND
   Table1.ActivityDate = Table2.Date
 LEFT JOIN 
-  `case-study-capsone.smart_device_usage.daily_avg_heartrate` AS Table3
+  `case-study-capstone.smart_device_usage.daily_avg_heartrate` AS Table3
 ON
   Table1.id = Table3.Id AND
   Table1.ActivityDate = Table3.Date
 LEFT JOIN 
-  `case-study-capsone.smart_device_usage.daily_sleep` AS Table4 
+  `case-study-capstone.smart_device_usage.daily_sleep` AS Table4 
 ON
   Table1.id = Table4.Id AND
   Table1.ActivityDate = Table4.Sleep_day
@@ -151,7 +152,7 @@ WITH NumberedUsers AS (
     Avg_heartrate AS Avg_Heartrate,
     DENSE_RANK() OVER (ORDER BY id) AS rank
   FROM
-   `case-study-capsone.smart_device_usage.daily_activity_temp`
+   `case-study-capstone.smart_device_usage.daily_activity_temp`
 )
 
 SELECT
@@ -170,11 +171,11 @@ SELECT
 FROM
   NumberedUsers;
 ````
-![User id 1-33 for each user id number table]()
+![User id 1-33 for each user id number table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/User_id%20%26%20Id_number.png)
 
 > Final **General table** created
 ````
-CREATE TABLE `case-study-capsone.smart_device_usage.smart_usage_daily_data`
+CREATE TABLE `case-study-capstone.smart_device_usage.smart_usage_daily_data`
 AS
 WITH NumberedUsers AS (
   SELECT
@@ -191,7 +192,7 @@ WITH NumberedUsers AS (
     Avg_heartrate AS Avg_Heartrate,
     DENSE_RANK() OVER (ORDER BY id) AS rank
   FROM
-   `case-study-capsone.smart_device_usage.daily_activity_temp`
+   `case-study-capstone.smart_device_usage.daily_activity_temp`
 )
 
 SELECT
@@ -217,63 +218,63 @@ FROM
 ````
 SELECT 
   LENGTH(CAST(Calories_Burn AS STRING)) AS lenght_burn
-  FROM `case-study-capsone.smart_device_usage.smart_usage_daily_data` 
+  FROM `case-study-capstone.smart_device_usage.smart_usage_daily_data` 
 ````
 ###### 2
 ````
 SELECT 
   LENGTH(CAST(Calories_Burn AS STRING)) AS lenght_burn
-  FROM `case-study-capsone.smart_device_usage.smart_usage_daily_data` 
+  FROM `case-study-capstone.smart_device_usage.smart_usage_daily_data` 
   WHERE 
     LENGTH(CAST(Calories_Burn AS STRING)) <4
 ````
-> Average steps and calories burn was calculated
-###### average step by each users
+> Average steps and calories burned was calculated
+###### Average step by each user
 ````
-CREATE TABLE `case-study-capsone.smart_device_usage.Avg_User_Steps`
+CREATE TABLE `case-study-capstone.smart_device_usage.Avg_User_Steps`
 AS  
 SELECT
   User_Id,
   CEIL(AVG(Total_Steps)) AS avg_step
-FROM `case-study-capsone.smart_device_usage.smart_usage_daily_data` 
+FROM `case-study-capstone.smart_device_usage.smart_usage_daily_data` 
 GROUP BY
   User_Id
 ````
 > Average_calories_burn
 ````
-CREATE TABLE `case-study-capsone.smart_device_usage.Avg_User_Calories`
+CREATE TABLE `case-study-capstone.smart_device_usage.Avg_User_Calories`
 AS
 SELECT
   User_Id,
   CEIL(AVG(Calories_Burn)) AS avg_calories
-FROM `case-study-capsone.smart_device_usage.smart_usage_daily_data` 
+FROM `case-study-capstone.smart_device_usage.smart_usage_daily_data` 
 GROUP BY
   User_Id
 ````
 > Average steps and calories were merged
 ##### Merged Steps and Calories 
 ````
-CREATE TABLE `case-study-capsone.smart_device_usage.Avg_steps_calories`
+CREATE TABLE `case-study-capstone.smart_device_usage.Avg_steps_calories`
 AS
 SELECT 
   table1.User_Id,
   avg_step,
   avg_calories
 FROM 
-  `case-study-capsone.smart_device_usage.Avg_User_Steps` AS table1
+  `case-study-capstone.smart_device_usage.Avg_User_Steps` AS table1
 LEFT JOIN
-  `case-study-capsone.smart_device_usage.Avg_User_Calories` AS table2
+  `case-study-capstone.smart_device_usage.Avg_User_Calories` AS table2
 ON
  table1.User_Id = table2.User_Id
 ORDER BY 
   CAST(SUBSTRING(User_id, 6) AS INT64)
-> Fitness tracker data was filtered. Minimum and maximum year was confirmed to understand the data better and it's impact on my recommendation
+> Fitness tracker data was filtered. The minimum and maximum years were confirmed to understand the data better and its impact on my recommendation
 ````
-[Average steps & average calories table](
+![Average steps & average calories table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Average_steps_vs_Average_calories.png)
 
-> fitness_tracker
+> New fitness tracker table created from [fitness tracker and smartwatch database](https://bmcresnotes.biomedcentral.com/articles/10.1186/s13104-022-06146-5) after filtering tracker from the data. Non-essential columns like device name and crowdfunding status were removed for clarity. 
 ````
-CREATE TABLE `case-study-capsone.smart_device_usage.fitness_tracker`
+CREATE TABLE `case-study-capstone.smart_device_usage.fitness_tracker`
 AS
 SELECT
   Company_name,
@@ -286,20 +287,20 @@ SELECT
   GPS,
   PPG
 FROM
-  `case-study-capsone.smart_device_usage.fitness_tracker_company` 
+  `case-study-capstone.smart_device_usage.fitness_tracker_company` 
 WHERE
   Form_factor = 'tracker'
 ORDER BY Release_year
 ````
 ![Fitness tracker table](https://github.com/AbodeSodiq/Bellabeat-Google-Data-Analytics-Case-Study/blob/main/Tables/Fitness_tracker.png)
 
-> Minimum and maximum year
+> Minimum and maximum year of tracker checked
 ````
 SELECT
   MIN(Release_year) AS min_value,
   MAX(Release_year) AS max_value
 FROM
-  `case-study-capsone.smart_device_usage.fitness_tracker_company` 
+  `case-study-capstone.smart_device_usage.fitness_tracker_company` 
 WHERE
   Release_year IS NOT NULL AND Release_year != 'NA'
 ## Calculation
@@ -311,7 +312,7 @@ SELECT
   SUM(Total_Distance) AS sum_total_distance,
   SUM(Tracker_Distance) AS sum_tracker_distance
 FROM
-`case-study-capsone.smart_device_usage.smart_usage_daily_data`
+`case-study-capstone.smart_device_usage.smart_usage_daily_data`
 ````
 > With total row
 ````
@@ -320,7 +321,7 @@ SELECT
   SUM(Tracker_Distance) AS sum_tracker,
   IFNULL(User_Id, 'Total') AS User_I
 FROM
-  `case-study-capsone.smart_device_usage.smart_usage_daily_data`
+  `case-study-capstone.smart_device_usage.smart_usage_daily_data`
 WHERE 
   Total_Distance != Tracker_Distance
 GROUP BY
@@ -334,12 +335,12 @@ SELECT
   ROUND(AVG(Total_Distance), 1) AS avg_total_distance,
   ROUND(AVG(Tracker_Distance), 1) AS avg_tracker_distance
 FROM
-`case-study-capsone.smart_device_usage.smart_usage_daily_data`
+`case-study-capstone.smart_device_usage.smart_usage_daily_data`
 GROUP BY
   User_Id
-> Percentage of each sensors was calculated for all non-Bellabeat products
+> Percentage of each sensor was calculated for all non-Bellabeat products
 ````
-> fitness_tracker_calculation
+> Percentage of fitness tracker calculation
 ````
 SELECT
   (COUNTIF(Accelerometer) / COUNT(Accelerometer)) * 100 AS true_accelerometer_percentage,
@@ -349,16 +350,16 @@ SELECT
   (COUNTIF(GPS) / COUNT(GPS)) * 100 AS true_GPS_percentage,
   (COUNTIF(PPG) / COUNT(PPG)) * 100 AS true_PPG_percentage
 FROM
-  `case-study-capsone.smart_device_usage.fitness_tracker_info`
+  `case-study-capstone.smart_device_usage.fitness_tracker_info`
 ````
 > BMI Calculation
-##### Average_bmi for each users
+##### Average_bmi for each user
 ````
 SELECT
   DISTINCT(User_Id) AS User_id,
   AVG(BMI) AS avg_bmi 
 FROM 
-  `case-study-capsone.smart_device_usage.smart_usage_daily_data` 
+  `case-study-capstone.smart_device_usage.smart_usage_daily_data` 
 WHERE 
   BMI IS NOT NULL
 GROUP BY
@@ -366,7 +367,7 @@ GROUP BY
 ORDER BY 
   CAST(SUBSTRING(User_id, 6) AS INT64)  
  ````   
-> Other findings 
+> BMI calculations contd. 
 ````
 SELECT
   MAX(BMI) AS max_bmi, 
@@ -374,7 +375,7 @@ SELECT
   AVG(BMI) AS avg_bmi, 
   stddev(BMI) AS stddev_bmi 
 FROM 
-  `case-study-capsone.smart_device_usage.smart_usage_daily_data` 
+  `case-study-capstone.smart_device_usage.smart_usage_daily_data` 
 WHERE 
   BMI IS NOT NULL
 ````
